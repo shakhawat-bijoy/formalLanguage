@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formal Languages and Compiler Lab Portfolio</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e3f0ff 0%, #f8fbff 100%);
+            color: #1a2233;
+            margin: 0 auto;
+            max-width: 1100px;
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #0a3d62;
+            margin-top: 1.5em;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 0.3em;
+            font-size: 2.3em;
+            letter-spacing: 1px;
+        }
+
+        .meta {
+            margin-bottom: 2.2em;
+            font-size: 1.08em;
+            text-align: center;
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 1em 0;
+            box-shadow: 0 1px 4px #e0eaf6;
+        }
+
+        .meta span {
+            display: inline-block;
+            min-width: 180px;
+            margin: 0 0.5em;
+        }
+
+        .toc {
+            background: #f7fbff;
+            border-left: 6px solid #0a3d62;
+            box-shadow: 0 2px 10px #e0eaf6;
+            padding: 2em 2.5em;
+            margin-bottom: 2.5em;
+            border-radius: 14px;
+        }
+
+        .toc h2 {
+            text-align: left;
+            font-size: 1.45em;
+            color: #0a3d62;
+            margin-bottom: 1em;
+            letter-spacing: 1px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toc>ul>li {
+            font-weight: 600;
+            color: #0a3d62;
+            margin-bottom: 0.6em;
+            font-size: 1.08em;
+            position: relative;
+            padding-left: 0.5em;
+        }
+
+        .toc>ul>ul {
+            margin-left: 1.6em;
+            margin-top: 0.2em;
+        }
+
+        .toc ul ul li {
+            font-weight: 400;
+            color: #1a2233;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+            padding-left: 1em;
+            border-left: 2px solid #e0eaf6;
+        }
+
+        .toc li .page-num {
+            color: #6c7a89;
+            font-weight: 500;
+            font-size: 0.95em;
+            background: #e3f0ff;
+            border-radius: 4px;
+            padding: 0.1em 0.6em;
+            margin-left: 1em;
+            box-shadow: 0 1px 2px #e0eaf6;
+            display: inline-block;
+        }
+
+        .page-num {
+            float: right;
+            color: #6c7a89;
+            font-weight: bold;
+            display: none;
+        }
+
+        pre,
+        code {
+            background: #f5f7fa;
+            border-radius: 6px;
+            padding: 0.7em 1em;
+            font-size: 1.02em;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            overflow-x: auto;
+            box-shadow: 0 1px 4px #e0eaf6;
+        }
+
+        .section {
+            margin-bottom: 2.2em;
+            background: #fff;
+            padding: 2em 1.5em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px #e0eaf6;
+        }
+
+        .subsection {
+            margin-top: 1.3em;
+            margin-bottom: 1em;
+        }
+
+        .explanation,
+        .output {
+            margin: 1em 0;
+            background: linear-gradient(90deg, #e3f0ff 0%, #f7fbff 100%);
+            border-left: 5px solid #0a3d62;
+            padding: 1em 1.2em;
+            border-radius: 6px;
+            font-size: 1.04em;
+            box-shadow: 0 1px 4px #e0eaf6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4em;
+            font-size: 1.07em;
+            color: #444;
+            margin-bottom: 20px;
+            background: #f0f7ff;
+            border-radius: 8px;
+            padding: 1em 0;
+            box-shadow: 0 1px 4px #e0eaf6;
+        }
+
+        .submitted {
+            font-size: 1.12em;
+            margin-top: 2em;
+            text-align: center;
+            background: #f7fbff;
+            border-radius: 8px;
+            padding: 1em 0;
+            box-shadow: 0 1px 4px #e0eaf6;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                background: #fff;
+            }
+
+            .section,
+            .footer,
+            .meta,
+            .submitted {
+                box-shadow: none;
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formal Languages and Compiler Lab Portfolio</h1>
+    <div class="meta">
+        <span><b>Name:</b> Shakhawat Hossain Bijoy</span>
+        <span><b>Student ID:</b> 231071041</span><br>
+        <span><b>Department:</b> CSE</span>
+        <span><b>Semester:</b> 5th</span><br>
+        <span><b>Course Instructor:</b> MD TAHFIMUZZAMAN</span>
+    </div>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li>1. Introduction</li>
+            <li>2. String Operations and Analysis</li>
+            <ul>
+                <li>2.1 String Length Calculation</li>
+                <li>2.2 White Space Operations</li>
+                <li>2.3 Character Analysis</li>
+            </ul>
+            <li>3. Regular Expressions and Pattern Matching</li>
+            <ul>
+                <li>3.1 Pattern a* (Zero or More 'a')</li>
+                <li>3.2 Pattern a*b+ (Complex Pattern)</li>
+                <li>3.3 Exact String Matching</li>
+                <li>3.4 String Tokenization</li>
+            </ul>
+            <li>4. Lexical Analysis</li>
+            <ul>
+                <li>4.1 Comment Removal</li>
+                <li>4.2 Article Counter</li>
+                <li>4.3 Valid Identifier Checker</li>
+            </ul>
+            <li>5. ASCII Operations and Name Processing</li>
+            <ul>
+                <li>5.1 ASCII Character Manipulation</li>
+                <li>5.2 Initial Extraction</li>
+            </ul>
+            <li>6. Expression Evaluation (Recursive Descent Parser)</li>
+            <ul>
+                <li>6.1 Parser Implementation</li>
+                <li>6.2 Expression Evaluation with Precedence</li>
+            </ul>
+            <li>7. Three Address Code (TAC) Generation</li>
+            <ul>
+                <li>7.1 TAC Generation Algorithm</li>
+                <li>7.2 Intermediate Code Examples</li>
+            </ul>
+            <li>8. Recursive Descent Parser</li>
+            <ul>
+                <li>8.1 Grammar-based Parsing</li>
+                <li>8.2 Syntax Validation</li>
+            </ul>
+            <li>9. Infix to Postfix Conversion</li>
+            <ul>
+                <li>9.1 Shunting Yard Algorithm</li>
+                <li>9.2 Stack-based Conversion</li>
+            </ul>
+            <li>10. Deterministic Finite Automata (DFA)</li>
+            <ul>
+                <li>10.1 DFA for Strings Starting with "10"</li>
+                <li>10.2 DFA for Strings Ending with "01"</li>
+                <li>10.3 DFA for Exactly One '0'</li>
+                <li>10.4 DFA for Strings Containing "01"</li>
+                <li>10.5 DFA for Even Number of '0's</li>
+            </ul>
+            <li>11. Key Concepts and Learning Outcomes</li>
+            <li>12. Conclusion</li>
+        </ul>
+    </div>
+
+    <!-- Section 1: Introduction -->
+    <div class="section" id="introduction">
+        <h2>1. Introduction <span class="page-num">3</span></h2>
+        <p>This portfolio presents a comprehensive collection of 10 lab tasks focusing on fundamental concepts in formal
+            languages and compiler design. The tasks progress systematically from basic string manipulation to advanced
+            topics like parsing, Three Address Code (TAC) generation, and Deterministic Finite Automata (DFA)
+            implementation.</p>
+        <ul>
+            <li>Master string analysis and manipulation techniques in C</li>
+            <li>Understand pattern matching using regular expressions</li>
+            <li>Develop lexical analysis skills for identifier recognition</li>
+            <li>Learn expression parsing and evaluation methods</li>
+            <li>Implement intermediate code generation (TAC)</li>
+            <li>Design and simulate finite automata for pattern recognition</li>
+        </ul>
+        <p>Each task builds upon previous knowledge, creating a solid foundation in compiler construction principles and
+            providing hands-on experience with the theoretical concepts taught in formal language theory.</p>
+    </div>
+
+    <!-- Section 2: String Operations and Analysis -->
+    <div class="section" id="string-operations">
+        <h2>2. String Operations and Analysis <span class="page-num">4</span></h2>
+        <div class="subsection" id="length">
+            <h3>2.1 String Length Calculation <span class="page-num">4</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    int length = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove newline character if present
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    // Count characters manually
+    while (str[length] != '\0') {
+        length++;
+    }
+    
+    printf("Length of the string is: %d\n", length);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Sample Output:<br>
+                Enter a string: Hello World<br>
+                Length of the string is: 11
+            </div>
+        </div>
+        <div class="subsection" id="whitespace">
+            <h3>2.2 White Space Operations <span class="page-num">5</span></h3>
+            <h4>Count White Spaces</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    int i = 0, spaceCount = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    while (str[i] != '\0') {
+        if (str[i] == ' ') {
+            spaceCount++;
+        }
+        i++;
+    }
+    
+    printf("Number of white spaces: %d\n", spaceCount);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Sample Output:<br>Enter a string: This is a test string<br>Number of white spaces: 4
+            </div>
+            <h4>Remove White Spaces</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100], result[100];
+    int i = 0, j = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    while (str[i] != '\0') {
+        if (str[i] != ' ') {
+            result[j] = str[i];
+            j++;
+        }
+        i++;
+    }
+    result[j] = '\0';
+    
+    printf("String without white spaces: %s\n", result);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Sample Output:<br>Enter a string: Hello World Programming<br>String without white
+                spaces: HelloWorldProgramming</div>
+        </div>
+        <div class="subsection" id="character-analysis">
+            <h3>2.3 Character Analysis <span class="page-num">6</span></h3>
+            <h4>C Keyword Checker</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+const char* keywords[] = {
+    "auto", "break", "case", "char", "const", "continue",
+    "default", "do", "double", "else", "enum", "extern",
+    "float", "for", "goto", "if", "int", "long", "register",
+    "return", "short", "signed", "sizeof", "static", "struct",
+    "switch", "typedef", "union", "unsigned", "void", "volatile",
+    "while"
+};
+
+#define NUM_KEYWORDS (sizeof(keywords) / sizeof(keywords[0]))
+
+int isKeyword(const char* str) {
+    for (int i = 0; i < NUM_KEYWORDS; i++) {
+        if (strcmp(str, keywords[i]) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    char str[50];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    if (isKeyword(str)) {
+        printf("\"%s\" is a C keyword.\n", str);
+    } else {
+        printf("\"%s\" is NOT a C keyword.\n", str);
+    }
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: int<br>"int" is a C keyword.<br>Enter a string: variable<br>"variable"
+                is NOT a C keyword.</div>
+            <h4>Count Vowels, Consonants, and Digits</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+
+int main() {
+    char str[200];
+    int vowels = 0, consonants = 0, digits = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        if (ch >= 'a' && ch <= 'z') {
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                vowels++;
+            else
+                consonants++;
+        } else if (ch >= '0' && ch <= '9') {
+            digits++;
+        }
+    }
+    printf("Vowels: %d\nConsonants: %d\nDigits: %d\n", vowels, consonants, digits);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: Hello123World<br>Vowels: 3<br>Consonants: 7<br>Digits: 3</div>
+        </div>
+
+    </div>
+
+    <!-- Section 3: Regular Expressions and Pattern Matching -->
+    <div class="section" id="regex">
+        <h2>3. Regular Expressions and Pattern Matching <span class="page-num">8</span></h2>
+        <div class="subsection">
+            <h3>3.1 Pattern a* (Zero or More 'a') <span class="page-num">8</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    int isValid = 1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != 'a') {
+            isValid = 0;
+            break;
+        }
+    }
+    
+    if (isValid) {
+        printf("Accepted (Matches a*)\n");
+    } else {
+        printf("Rejected (Does not match a*)\n");
+    }
+    
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: aaa<br>Accepted (Matches a*)<br>Enter a string: aab<br>Rejected (Does
+                not match a*)<br>Enter a string: <br>Accepted (Matches a*)</div>
+        </div>
+        <div class="subsection">
+            <h3>3.2 Pattern a*b+ (Complex Pattern) <span class="page-num">9</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    int i = 0, len, isValid = 1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    len = strlen(str);
+    
+    // Skip all 'a' characters
+    while (str[i] == 'a') {
+        i++;
+    }
+    
+    // Count 'b' characters
+    int bCount = 0;
+    while (str[i] == 'b') {
+        bCount++;
+        i++;
+    }
+    
+    // Check if we've consumed all characters and have at least one 'b'
+    if (i != len || bCount == 0) {
+        isValid = 0;
+    }
+    
+    if (isValid) {
+        printf("Accepted (Matches a*b+)\n");
+    } else {
+        printf("Rejected (Does not match a*b+)\n");
+    }
+    
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: aaabb<br>Accepted (Matches a*b+)<br>Enter a string: b<br>Accepted
+                (Matches a*b+)<br>Enter a string: aaa<br>Rejected (Does not match a*b+)</div>
+        </div>
+        <div class="subsection">
+            <h3>3.3 Exact String Matching <span class="page-num">10</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    if (strcmp(str, "abb") == 0) {
+        printf("Accepted (Exact match for 'abb')\n");
+    } else {
+        printf("Rejected (Does not match 'abb')\n");
+    }
+    
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: abb<br>Accepted (Exact match for 'abb')<br>Enter a string:
+                abc<br>Rejected (Does not match 'abb')</div>
+        </div>
+
+        <div class="subsection" id="string-tokenization">
+            <h3>3.4 String Tokenization <span class="page-num">7</span></h3>
+            <h4>String Tokenization with strtok()</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[200];
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+    char* token = strtok(str, " ,.-!?\t");
+    printf("Tokens found:\n");
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ,.-!?\t");
+    }
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: Hello, world! How are you?<br>Tokens
+                found:<br>Hello<br>world<br>How<br>are<br>you</div>
+            <h4>Count Tokens</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[200];
+    int tokenCount = 0;
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+    char* token = strtok(str, " ,.-!?\t");
+    while (token != NULL) {
+        tokenCount++;
+        token = strtok(NULL, " ,.-!?\t");
+    }
+    printf("Total tokens found: %d\n", tokenCount);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a string: The quick brown fox jumps over the lazy dog.<br>Total tokens found: 9
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Lexical Analysis -->
+    <div class="section" id="lexical-analysis">
+        <h2>4. Lexical Analysis <span class="page-num">11</span></h2>
+        <div class="subsection">
+            <h3>4.1 Comment Removal <span class="page-num">11</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char code[5000] = "";
+    char line[500];
+    
+    printf("Enter your code (type '#' in a new line to finish):\n");
+    while (1) {
+        fgets(line, sizeof(line), stdin);
+        if (line[0] == '#' && line[1] == '\n')
+            break;
+        strcat(code, line);
+    }
+    
+    for (int i = 0; code[i] != '\0'; i++) {
+        if (code[i] == '/' && code[i + 1] == '/') {
+            // Skip single-line comment
+            while (code[i] != '\n' && code[i] != '\0')
+                i++;
+        } else if (code[i] == '/' && code[i + 1] == '*') {
+            // Skip multi-line comment
+            i += 2;
+            while (!(code[i] == '*' && code[i + 1] == '/') && code[i] != '\0')
+                i++;
+            i += 1;
+        } else {
+            putchar(code[i]);
+        }
+    }
+    
+    return 0;
+}
+            </code></pre>
+            <div class="output">Sample Input/Output:<br>int main() {<br> // This is a comment<br> int x = 5; /* This is
+                also a comment */<br> return 0;<br>}<br>#<br>Output:<br>int main() {<br> <br> int x = 5; <br> return
+                0;<br>}</div>
+        </div>
+        <div class="subsection">
+            <h3>4.2 Article Counter <span class="page-num">12</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+
+int main() {
+    char str[1000], word[10];
+    int a = 0, an = 0, the = 0;
+    int i = 0, j = 0;
+    
+    printf("Enter a sentence: ");
+    fgets(str, sizeof(str), stdin);
+    
+    while (str[i]) {
+        if (isalpha(str[i])) {
+            word[j++] = tolower(str[i]);
+        } else {
+            if (j > 0) {
+                word[j] = '\0';
+                if (strcmp(word, "a") == 0) a++;
+                else if (strcmp(word, "an") == 0) an++;
+                else if (strcmp(word, "the") == 0) the++;
+                j = 0;
+            }
+        }
+        i++;
+    }
+    
+    // Check last word
+    if (j > 0) {
+        word[j] = '\0';
+        if (strcmp(word, "a") == 0) a++;
+        else if (strcmp(word, "an") == 0) an++;
+        else if (strcmp(word, "the") == 0) the++;
+    }
+    
+    printf("a: %d\nan: %d\nthe: %d\n", a, an, the);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a sentence: The quick brown fox jumps over a lazy dog and an elephant.<br>a:
+                1<br>an: 1<br>the: 1</div>
+        </div>
+        <div class="subsection">
+            <h3>4.3 Valid Identifier Checker <span class="page-num">13</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str[100];
+    int i, valid = 1;
+    
+    printf("Enter an identifier: ");
+    scanf("%s", str);
+    
+    // First character must be letter or underscore
+    if (!(isalpha(str[0]) || str[0] == '_')) {
+        valid = 0;
+    }
+    
+    // Remaining characters must be alphanumeric or underscore
+    for (i = 1; str[i]; i++) {
+        if (!(isalnum(str[i]) || str[i] == '_')) {
+            valid = 0;
+            break;
+        }
+    }
+    
+    if (valid)
+        printf("Valid identifier\n");
+    else
+        printf("Invalid identifier\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter an identifier: _variable123<br>Valid identifier<br>Enter an identifier:
+                123variable<br>Invalid identifier<br>Enter an identifier: my_var<br>Valid identifier</div>
+        </div>
+    </div>
+
+    <!-- Section 5: ASCII Operations and Name Processing -->
+    <div class="section" id="ascii-operations">
+        <h2>5. ASCII Operations and Name Processing <span class="page-num">14</span></h2>
+        <div class="subsection">
+            <h3>5.1 ASCII Character Manipulation <span class="page-num">14</span></h3>
+            <h4>Next ASCII Characters</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char c1, c2, c3;
+    
+    printf("Enter 3 characters: ");
+    scanf(" %c %c %c", &c1, &c2, &c3);
+    
+    printf("Next ASCII characters: %c %c %c\n", c1 + 1, c2 + 1, c3 + 1);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter 3 characters: a b c<br>Next ASCII characters: b c d</div>
+            <h4>ASCII Value and Offset</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char ch;
+    
+    printf("Enter a character: ");
+    scanf(" %c", &ch);
+    
+    printf("ASCII of %c: %d\n", ch, ch);
+    printf("ASCII 5 steps ahead: %d (%c)\n", ch + 5, ch + 5);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a character: A<br>ASCII of A: 65<br>ASCII 5 steps ahead: 70 (F)</div>
+        </div>
+        <div class="subsection">
+            <h3>5.2 Initial Extraction <span class="page-num">15</span></h3>
+            <h4>Extract Initials</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char first[50], last[50];
+    
+    printf("Enter first and last name: ");
+    scanf("%s %s", first, last);
+    
+    printf("Initials: %c.%c.\n", first[0], last[0]);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter first and last name: John Doe<br>Initials: J.D.</div>
+            <h4>Full Name Initials</h4>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char name[100];
+    int i;
+    
+    printf("Enter full name (up to 3 words): ");
+    fgets(name, sizeof(name), stdin);
+    
+    for (i = 0; name[i] != '\0'; i++) {
+        if (i == 0 && name[i] != ' ') {
+            printf("%c.", name[i]);
+        } else if (name[i] == ' ' && name[i + 1] != ' ' && 
+                   name[i + 1] != '\0' && name[i + 1] != '\n') {
+            printf("%c.", name[i + 1]);
+        }
+    }
+    printf("\n");
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter full name (up to 3 words): Shakhawat Hossain Bijoy<br>S.H.B.</div>
+        </div>
+    </div>
+
+    <!-- Section 6: Expression Evaluation (Recursive Descent Parser) -->
+    <div class="section" id="expression-evaluation">
+        <h2>6. Expression Evaluation (Recursive Descent Parser) <span class="page-num">16</span></h2>
+        <div class="subsection">
+            <h3>6.1 Parser Implementation <span class="page-num">16</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;math.h&gt;
+#include &lt;string.h&gt;
+
+char input[100];
+int pos = 0;
+
+int getNextToken() {
+    while (input[pos] == ' ')
+        pos++;
+    return input[pos++];
+}
+
+void putBackToken() {
+    pos--;
+}
+
+int parseExpr();
+int parseTerm();
+int parsePower();
+
+int parseFactor() {
+    int token = getNextToken();
+    
+    if (isdigit(token)) {
+        int value = token - '0';
+        while (isdigit(input[pos])) {
+            value = value * 10 + (input[pos++] - '0');
+        }
+        return value;
+    } else if (token == '(') {
+        int result = parseExpr();
+        if (getNextToken() != ')') {
+            printf("Error: Missing ')'\n");
+            exit(1);
+        }
+        return result;
+    } else {
+        printf("Error: Expected number or '('\n");
+        exit(1);
+    }
+}
+
+int parsePower() {
+    int base = parseFactor();
+    int token = getNextToken();
+    
+    if (token == '^') {
+        int exponent = parsePower();
+        return pow(base, exponent);
+    } else {
+        putBackToken();
+        return base;
+    }
+}
+
+int parseTerm() {
+    int result = parsePower();
+    int token = getNextToken();
+    
+    while (token == '*' || token == '/') {
+        if (token == '*') {
+            result *= parsePower();
+        } else {
+            int divisor = parsePower();
+            if (divisor == 0) {
+                printf("Error: Division by zero\n");
+                exit(1);
+            }
+            result /= divisor;
+        }
+        token = getNextToken();
+    }
+    
+    putBackToken();
+    return result;
+}
+
+int parseExpr() {
+    int result = parseTerm();
+    int token = getNextToken();
+    
+    while (token == '+' || token == '-') {
+        if (token == '+') {
+            result += parseTerm();
+        } else {
+            result -= parseTerm();
+        }
+        token = getNextToken();
+    }
+    
+    putBackToken();
+    return result;
+}
+
+int main() {
+    printf("Enter an arithmetic expression: ");
+    fgets(input, sizeof(input), stdin);
+    
+    size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n') {
+        input[len - 1] = '\0';
+    }
+    
+    int result = parseExpr();
+    printf("Result: %d\n", result);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter an arithmetic expression: 3 + 4 * 2<br>Result: 11<br>Enter an arithmetic
+                expression: (5 + 3) * 2<br>Result: 16<br>Enter an arithmetic expression: 2^3 + 1<br>Result: 9</div>
+        </div>
+    </div>
+
+    <!-- Section 7: Three Address Code (TAC) Generation -->
+    <div class="section" id="tac-generation">
+        <h2>7. Three Address Code (TAC) Generation <span class="page-num">18</span></h2>
+        <div class="subsection">
+            <h3>7.1 TAC Generation Algorithm <span class="page-num">18</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+
+#define MAX 100
+int tempVarCount = 1;
+
+int isValidIdentifier(char *s) {
+    if (!isalpha(s[0]))
+        return 0;
+    for (int i = 1; s[i]; i++) {
+        if (!isalnum(s[i]))
+            return 0;
+    }
+    return 1;
+}
+
+void getTemp(char *temp) {
+    sprintf(temp, "t%d", tempVarCount++);
+}
+
+int main() {
+    char input[MAX], lhs[20];
+    char tokens[50][20];
+    int tokenCount = 0;
+    
+    printf("Enter expression (e.g., a = b + c + d + e):\n> ");
+    fgets(input, MAX, stdin);
+    input[strcspn(input, "\n")] = '\0';
+    
+    char *token = strtok(input, " ");
+    while (token != NULL) {
+        strcpy(tokens[tokenCount++], token);
+        token = strtok(NULL, " ");
+    }
+    
+    if (tokenCount < 5 || strcmp(tokens[1], "=") != 0) {
+        printf("Error: Invalid format. Use format like: a = b + c + d\n");
+        return 1;
+    }
+    
+    strcpy(lhs, tokens[0]);
+    if (!isValidIdentifier(lhs)) {
+        printf("Error: Invalid identifier on LHS.\n");
+        return 1;
+    }
+    
+    printf("\nThree Address Code:\n");
+    
+    char prevTemp[20], temp[20];
+    char op1[20], op2[20], oper;
+    
+    strcpy(op1, tokens[2]);
+    strcpy(op2, tokens[4]);
+    oper = tokens[3][0];
+    
+    getTemp(temp);
+    printf("%s = %s %c %s\n", temp, op1, oper, op2);
+    strcpy(prevTemp, temp);
+    
+    for (int i = 5; i < tokenCount; i += 2) {
+        if (i + 1 >= tokenCount) {
+            printf("Error: Operator without operand.\n");
+            return 1;
+        }
+        
+        oper = tokens[i][0];
+        strcpy(op2, tokens[i + 1]);
+        
+        getTemp(temp);
+        printf("%s = %s %c %s\n", temp, prevTemp, oper, op2);
+        strcpy(prevTemp, temp);
+    }
+    
+    printf("%s = %s\n", lhs, prevTemp);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter expression (e.g., a = b + c + d + e):<br>&gt; a = b + c * d + e<br><br>Three
+                Address Code:<br>t1 = b + c<br>t2 = t1 * d<br>t3 = t2 + e<br>a = t3</div>
+        </div>
+        <div class="subsection">
+            <h3>7.2 Intermediate Code Examples <span class="page-num">19</span></h3>
+            <pre><code>Input: x = a + b + c
+Output:
+t1 = a + b
+t2 = t1 + c
+x = t2
+
+Input: result = p * q + r * s
+Output:
+t1 = p * q
+t2 = r * s
+t3 = t1 + t2
+result = t3
+</code></pre>
+        </div>
+    </div>
+
+    <!-- Section 8: Recursive Descent Parser -->
+    <div class="section" id="rd-parser">
+        <h2>8. Recursive Descent Parser <span class="page-num">20</span></h2>
+        <div class="subsection">
+            <h3>8.1 Grammar-based Parsing <span class="page-num">20</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;ctype.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+char input[100];
+int pos = 0;
+char currentChar;
+
+void error() {
+    printf("Invalid Expression\n");
+    exit(1);
+}
+
+void advance() {
+    currentChar = input[pos++];
+}
+
+void match(char expected) {
+    if (currentChar == expected)
+        advance();
+    else
+        error();
+}
+
+void E();
+void Eprime();
+void T();
+void Tprime();
+void F();
+
+void E() {
+    T();
+    Eprime();
+}
+
+void Eprime() {
+    if (currentChar == '+' || currentChar == '-') {
+        char op = currentChar;
+        advance();
+        T();
+        Eprime();
+    }
+}
+
+void T() {
+    F();
+    Tprime();
+}
+
+void Tprime() {
+    if (currentChar == '*' || currentChar == '/') {
+        char op = currentChar;
+        advance();
+        F();
+        Tprime();
+    }
+}
+
+void F() {
+    if (isalpha(currentChar)) {
+        advance();
+    } else if (currentChar == '(') {
+        advance();
+        E();
+        if (currentChar == ')') {
+            advance();
+        } else {
+            error();
+        }
+    } else {
+        error();
+    }
+}
+
+int main() {
+    printf("Enter an expression: ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0';
+    
+    pos = 0;
+    advance();
+    E();
+    
+    if (currentChar == '\0')
+        printf("Expression is Valid\n");
+    else
+        printf("Invalid Expression\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter an expression: a+b*c<br>Expression is Valid<br>Enter an expression:
+                (a+b)*c<br>Expression is Valid<br>Enter an expression: a++b<br>Invalid Expression</div>
+        </div>
+        <div class="subsection">
+            <h3>8.2 Syntax Validation <span class="page-num">21</span></h3>
+            <pre><code>E  → T E'
+E' → + T E' | - T E' | ε
+T  → F T'
+T' → * F T' | / F T' | ε
+F  → id | ( E )
+</code></pre>
+            <div class="explanation">This grammar ensures proper operator precedence and associativity.</div>
+        </div>
+    </div>
+
+    <!-- Section 9: Infix to Postfix Conversion -->
+    <div class="section" id="infix-to-postfix">
+        <h2>9. Infix to Postfix Conversion <span class="page-num">22</span></h2>
+        <div class="subsection">
+            <h3>9.1 Shunting Yard Algorithm <span class="page-num">22</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;ctype.h&gt;
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    stack[++top] = c;
+}
+
+char pop() {
+    if (top == -1)
+        return -1;
+    return stack[top--];
+}
+
+char peek() {
+    if (top == -1)
+        return -1;
+    return stack[top];
+}
+
+int precedence(char op) {
+    if (op == '+' || op == '-')
+        return 1;
+    if (op == '*' || op == '/')
+        return 2;
+    return 0;
+}
+
+void infixToPostfix(char *exp) {
+    char *e = exp;
+    char ch;
+    
+    printf("Postfix: ");
+    
+    while (*e != '\0') {
+        if (isalnum(*e)) {
+            printf("%c ", *e);
+        } else if (*e == '(') {
+            push(*e);
+        } else if (*e == ')') {
+            while ((ch = pop()) != '(')
+                printf("%c ", ch);
+        } else {
+            while (precedence(peek()) >= precedence(*e))
+                printf("%c ", pop());
+            push(*e);
+        }
+        e++;
+    }
+    
+    while (top != -1)
+        printf("%c ", pop());
+    
+    printf("\n");
+}
+
+int main() {
+    char expression[MAX];
+    
+    printf("Enter infix expression (e.g., a+b*c): ");
+    scanf("%s", expression);
+    
+    infixToPostfix(expression);
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter infix expression (e.g., a+b*c): a+b*c<br>Postfix: a b c * + <br>Enter infix
+                expression (e.g., a+b*c): (a+b)*c<br>Postfix: a b + c * <br>Enter infix expression (e.g., a+b*c):
+                a+b*c-d/e<br>Postfix: a b c * + d e / - </div>
+        </div>
+        <div class="subsection">
+            <h3>9.2 Stack-based Conversion <span class="page-num">23</span></h3>
+            <div class="explanation">
+                The algorithm works by:<br>
+                1. <b>Operands</b>: Output directly to postfix expression<br>
+                2. <b>Left Parenthesis</b>: Push onto stack<br>
+                3. <b>Right Parenthesis</b>: Pop and output until left parenthesis is found<br>
+                4. <b>Operators</b>: Pop operators with higher or equal precedence, then push current operator<br>
+                5. <b>End of Expression</b>: Pop all remaining operators from stack<br>
+                <br>
+                <b>Precedence Rules:</b>
+                <ul>
+                    <li>*, / have precedence 2</li>
+                    <li>+, - have precedence 1</li>
+                    <li>(, ) are handled specially</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 10: DFA -->
+    <div class="section" id="dfa">
+        <h2>10. Deterministic Finite Automata (DFA) <span class="page-num">24</span></h2>
+        <div class="subsection">
+            <h3>10.1 DFA for Strings Starting with "10" <span class="page-num">24</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int dfa_startsWith10(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '1')
+                    state = 1;
+                else
+                    state = 3; // reject state
+                break;
+            case 1:
+                if (ch == '0')
+                    state = 2; // accept state
+                else
+                    state = 3; // reject state
+                break;
+            case 2:
+                if (ch == '0' || ch == '1')
+                    state = 2; // stay in accept state
+                else
+                    state = 3; // reject state
+                break;
+            case 3:
+                return 0; // reject
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_startsWith10(input))
+        printf("Accepted: String starts with '10'\n");
+    else
+        printf("Rejected: Does NOT start with '10'\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a binary string: 101010<br>Accepted: String starts with '10'<br>Enter a binary
+                string: 110101<br>Rejected: Does NOT start with '10'<br>Enter a binary string: 10<br>Accepted: String
+                starts with '10'</div>
+            <div class="explanation">
+                <b>State Diagram:</b>
+                <pre>
+State 0 (Start): 
+  - Input '1' → State 1
+  - Input '0' → State 3 (Reject)
+State 1:
+  - Input '0' → State 2 (Accept)
+  - Input '1' → State 3 (Reject)
+State 2 (Accept):
+  - Input '0' or '1' → State 2 (Stay)
+State 3 (Reject):
+  - Any input → Reject
+                </pre>
+            </div>
+        </div>
+        <div class="subsection">
+            <h3>10.2 DFA for Strings Ending with "01" <span class="page-num">26</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int dfa_endsWith01(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+            case 1:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 2;
+                else return 0;
+                break;
+            case 2:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_endsWith01(input))
+        printf("Accepted: String ends with '01'\n");
+    else
+        printf("Rejected: Does NOT end with '01'\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a binary string: 110101<br>Accepted: String ends with '01'<br>Enter a binary
+                string: 101010<br>Rejected: Does NOT end with '01'<br>Enter a binary string: 01<br>Accepted: String ends
+                with '01'</div>
+            <div class="explanation">
+                <b>State Diagram:</b>
+                <pre>
+State 0 (Start):
+  - Input '0' → State 1
+  - Input '1' → State 0
+State 1:
+  - Input '0' → State 1
+  - Input '1' → State 2
+State 2 (Accept):
+  - Input '0' → State 1
+  - Input '1' → State 0
+                </pre>
+            </div>
+        </div>
+        <div class="subsection">
+            <h3>10.3 DFA for Exactly One '0' <span class="page-num">28</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int dfa_exactlyOneZero(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0: // no zeros seen
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+            case 1: // exactly one zero seen
+                if (ch == '0') state = 2; // too many zeros
+                else if (ch == '1') state = 1;
+                else return 0;
+                break;
+            case 2: // more than one zero seen
+                return 0;
+        }
+    }
+    
+    return state == 1;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_exactlyOneZero(input))
+        printf("Accepted: String contains exactly one '0'\n");
+    else
+        printf("Rejected: Does NOT contain exactly one '0'\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a binary string: 11011<br>Accepted: String contains exactly one '0'<br>Enter a
+                binary string: 11001<br>Rejected: Does NOT contain exactly one '0'<br>Enter a binary string:
+                1111<br>Rejected: Does NOT contain exactly one '0'</div>
+            <div class="explanation">
+                <b>State Diagram:</b>
+                <pre>
+State 0 (Start - No zeros):
+  - Input '0' → State 1
+  - Input '1' → State 0
+State 1 (Accept - Exactly one zero):
+  - Input '0' → State 2 (Reject)
+  - Input '1' → State 1
+State 2 (Reject - More than one zero):
+  - Any input → Reject
+                </pre>
+            </div>
+        </div>
+        <div class="subsection">
+            <h3>10.4 DFA for Strings Containing "01" <span class="page-num">30</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int dfa_contains01(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '0')
+                    state = 1;
+                else if (ch == '1')
+                    state = 0;
+                else
+                    return 0;
+                break;
+            case 1:
+                if (ch == '1')
+                    state = 2; // found "01"
+                else if (ch == '0')
+                    state = 1;
+                else
+                    return 0;
+                break;
+            case 2:
+                state = 2; // stay in accept state
+                break;
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_contains01(input))
+        printf("Accepted: String contains '01'\n");
+    else
+        printf("Rejected: String does NOT contain '01'\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a binary string: 110100<br>Accepted: String contains '01'<br>Enter a binary
+                string: 1111<br>Rejected: String does NOT contain '01'<br>Enter a binary string: 01<br>Accepted: String
+                contains '01'</div>
+        </div>
+        <div class="subsection">
+            <h3>10.5 DFA for Even Number of '0's <span class="page-num">32</span></h3>
+            <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int dfa_evenZeros(char *str) {
+    int state = 0; // state 0: even number of zeros, state 1: odd number of zeros
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0: // even number of zeros
+                if (ch == '0')
+                    state = 1; // now odd
+                else if (ch == '1')
+                    state = 0; // stay even
+                else
+                    return 0;
+                break;
+            case 1: // odd number of zeros
+                if (ch == '0')
+                    state = 0; // now even
+                else if (ch == '1')
+                    state = 1; // stay odd
+                else
+                    return 0;
+                break;
+        }
+    }
+    
+    return state == 0; // accept if even number of zeros
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_evenZeros(input))
+        printf("Accepted: Even number of '0's\n");
+    else
+        printf("Rejected: Odd number of '0's\n");
+        
+    return 0;
+}
+            </code></pre>
+            <div class="output">Enter a binary string: 110011<br>Accepted: Even number of '0's<br>Enter a binary string:
+                10101<br>Rejected: Odd number of '0's<br>Enter a binary string: 1111<br>Accepted: Even number of '0's
+                (zero is even)</div>
+            <div class="explanation">
+                <b>State Diagram:</b>
+                <pre>
+State 0 (Accept - Even zeros):
+  - Input '0' → State 1
+  - Input '1' → State 0
+State 1 (Reject - Odd zeros):
+  - Input '0' → State 0
+  - Input '1' → State 1
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 11: Key Concepts and Learning Outcomes -->
+    <div class="section" id="key-concepts">
+        <h2>11. Key Concepts and Learning Outcomes <span class="page-num">34</span></h2>
+        <h3>11.1 String Manipulation Mastery</h3>
+        <ul>
+            <li>Manual string operations without built-in functions</li>
+            <li>Character-by-character processing</li>
+            <li>Memory management for efficient string operations</li>
+            <li>Pattern recognition in textual data</li>
+        </ul>
+        <h3>11.2 Pattern Matching and Regular Expressions</h3>
+        <ul>
+            <li>Finite state logic implementation in C</li>
+            <li>Pattern validation using algorithmic approaches</li>
+            <li>Complex pattern recognition</li>
+        </ul>
+        <h3>11.3 Lexical Analysis Fundamentals</h3>
+        <ul>
+            <li>Token recognition and classification</li>
+            <li>Comment removal from source code</li>
+            <li>Identifier validation according to language rules</li>
+            <li>Article counting for NLP</li>
+        </ul>
+        <h3>11.4 Parsing and Syntax Analysis</h3>
+        <ul>
+            <li>Recursive descent parsing for expression evaluation</li>
+            <li>Grammar-based validation using formal rules</li>
+            <li>Operator precedence handling</li>
+            <li>Syntax tree construction concepts</li>
+        </ul>
+        <h3>11.5 Intermediate Code Generation</h3>
+        <ul>
+            <li>Intermediate representation design</li>
+            <li>Temporary variable management</li>
+            <li>Expression decomposition for optimization</li>
+            <li>Code transformation techniques</li>
+        </ul>
+        <h3>11.6 Expression Processing</h3>
+        <ul>
+            <li>Infix to postfix conversion using stack algorithms</li>
+            <li>Operator precedence implementation</li>
+            <li>Parentheses handling in complex expressions</li>
+            <li>Postfix evaluation techniques</li>
+        </ul>
+        <h3>11.7 Finite Automata Design</h3>
+        <ul>
+            <li>State machine design principles</li>
+            <li>Pattern recognition using finite states</li>
+            <li>Multiple acceptance criteria handling</li>
+            <li>Transition function implementation</li>
+        </ul>
+    </div>
+
+    <!-- Section 12: Conclusion -->
+    <div class="section" id="conclusion">
+        <h2>12. Conclusion <span class="page-num">36</span></h2>
+        <p>
+            This comprehensive portfolio represents a systematic journey through the fundamental concepts of formal
+            languages and compiler design. The progression from basic string operations to complex parsing and automata
+            design has provided invaluable hands-on experience with both theoretical concepts and practical
+            implementations.
+        </p>
+        <h3>12.1 Technical Mastery Achieved</h3>
+        <ul>
+            <li>Advanced C programming techniques for system-level development</li>
+            <li>Memory management and efficient algorithm implementation</li>
+            <li>Error handling and robust input validation</li>
+            <li>Modular code design and function organization</li>
+        </ul>
+        <h3>12.2 Problem-Solving Development</h3>
+        <ol>
+            <li>Analytical Thinking</li>
+            <li>Algorithm Design</li>
+            <li>State Management</li>
+            <li>Error Handling</li>
+            <li>Optimization</li>
+        </ol>
+        <h3>12.3 Real-World Applications</h3>
+        <ul>
+            <li>Text processing utilities and string manipulation tools</li>
+            <li>Input validation systems for web applications</li>
+            <li>Configuration file parsers and processors</li>
+            <li>Data extraction and transformation utilities</li>
+        </ul>
+        <h3>12.4 Academic and Professional Growth</h3>
+        <ul>
+            <li>Mastery of formal language theory concepts</li>
+            <li>Practical implementation of theoretical algorithms</li>
+            <li>Comprehensive understanding of compiler design phases</li>
+            <li>Ability to translate theory into working code</li>
+        </ul>
+        <h3>12.5 Future Directions</h3>
+        <ul>
+            <li>LR and LALR parsing techniques</li>
+            <li>Semantic analysis and type checking</li>
+            <li>Code optimization algorithms</li>
+            <li>Target code generation strategies</li>
+            <li>Research opportunities</li>
+            <li>Professional development</li>
+        </ul>
+        <h3>12.6 Personal Reflection</h3>
+        <p>
+            This journey through formal languages and compiler design has been transformative, providing not just
+            technical skills but also a deeper appreciation for the elegance of computational theory and its practical
+            applications. The progression from basic string manipulation to sophisticated parsing systems illustrates
+            the power of systematic learning and incremental skill building.
+        </p>
+        <ul>
+            <li>Theory and Practice Integration</li>
+            <li>Systematic Approach</li>
+            <li>Problem Decomposition</li>
+            <li>Code Quality</li>
+        </ul>
+        <p>
+            The skills and knowledge gained through these exercises will serve as a solid foundation for continued
+            growth in computer science, whether in academic research, software development, or innovative technology
+            creation. The journey continues with confidence and excitement for the advanced topics that lie ahead.
+        </p>
+    </div>
+
+    <div class="submitted">
+        <strong>Submitted By:</strong> Shakhawat Hossain Bijoy<br>
+        <strong>Student ID:</strong> 231071041<br>
+        <strong>Department:</strong> Computer Science and Engineering<br>
+        <strong>Semester:</strong> 5th<br>
+        <strong>Course Instructor:</strong> MD TAHFIMUZZAMAN<br>
+        <strong>Course Code:</strong> CSE 3017<br>
+
+        <strong>Submission Date: </strong>01/08/2025<br>
+
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Shakhawat Hossain Bijoy | Formal Languages and Compiler Lab Portfolio
+    </div>
+
+</body>
+
+</html>

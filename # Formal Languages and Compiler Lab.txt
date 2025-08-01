@@ -1,0 +1,1301 @@
+# Formal Languages and Compiler Lab Portfolio
+
+**Name:** Shafin Ahmed  
+**Student ID:** 231071073  
+**Department:** CSE  
+**Semester:** 5th  
+
+---
+
+## Overview
+
+This portfolio presents 10 comprehensive lab tasks focusing on fundamental concepts in formal languages and compiler design. The tasks progress from basic string manipulation to advanced topics like parsing, Three Address Code (TAC) generation, and Deterministic Finite Automata (DFA) implementation. Each task builds upon previous knowledge, creating a solid foundation in compiler construction principles.
+
+## Learning Objectives
+
+1. Master string analysis and manipulation techniques in C
+2. Understand pattern matching using regular expressions
+3. Develop lexical analysis skills for identifier recognition
+4. Learn expression parsing and evaluation methods
+5. Implement intermediate code generation (TAC)
+6. Design and simulate finite automata for pattern recognition
+
+---
+
+## LAB TASK 01: String Operations in C
+
+### Task 1.1: Count String Length Using Loop
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int length = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove newline character if present
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    // Count characters manually
+    while (str[length] != '\0') {
+        length++;
+    }
+    
+    printf("Length of the string is: %d\n", length);
+    return 0;
+}
+```
+
+**Explanation:** This program demonstrates manual string length calculation without using built-in functions like `strlen()`. It iterates through each character until the null terminator is found.
+
+### Task 1.2: Count how many white spaces (' ') are in a string.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int i = 0, spaceCount = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    while (str[i] != '\0') {
+        if (str[i] == ' ') {
+            spaceCount++;
+        }
+        i++;
+    }
+    
+    printf("Number of white spaces: %d\n", spaceCount);
+    return 0;
+}
+```
+
+**Explanation:** This program counts the number of space characters in a string by iterating through each character and checking for space (' ') characters.
+
+### Task 1.3: Remove all white spaces from the input string.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100], result[100];
+    int i = 0, j = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+    
+    while (str[i] != '\0') {
+        if (str[i] != ' ') {
+            result[j] = str[i];
+            j++;
+        }
+        i++;
+    }
+    result[j] = '\0';
+    
+    printf("String without white spaces: %s\n", result);
+    return 0;
+}
+```
+
+**Explanation:** This program creates a new string by copying only non-space characters from the original string, effectively removing all white spaces.
+
+---
+
+## LAB TASK 02: String Analysis
+
+### Task 2.1: Check if a given string is a C keyword (like int, if, etc.). 
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+const char* keywords[] = {
+    "auto", "break", "case", "char", "const", "continue",
+    "default", "do", "double", "else", "enum", "extern",
+    "float", "for", "goto", "if", "int", "long", "register",
+    "return", "short", "signed", "sizeof", "static", "struct",
+    "switch", "typedef", "union", "unsigned", "void", "volatile",
+    "while"
+};
+
+#define NUM_KEYWORDS (sizeof(keywords) / sizeof(keywords[0]))
+
+int isKeyword(const char* str) {
+    for (int i = 0; i < NUM_KEYWORDS; i++) {
+        if (strcmp(str, keywords[i]) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    char str[50];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    if (isKeyword(str)) {
+        printf("\"%s\" is a C keyword.\n", str);
+    } else {
+        printf("\"%s\" is NOT a C keyword.\n", str);
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program maintains an array of C keywords and uses string comparison to determine if the input matches any reserved word in C programming language.
+
+### Task 2.2:  Count the number of vowels, consonants, and digits in a 
+string. 
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[200];
+    int vowels = 0, consonants = 0, digits = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        
+        if (ch >= 'a' && ch <= 'z') {
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                vowels++;
+            else
+                consonants++;
+        } else if (ch >= '0' && ch <= '9') {
+            digits++;
+        }
+    }
+    
+    printf("Vowels: %d\n", vowels);
+    printf("Consonants: %d\n", consonants);
+    printf("Digits: %d\n", digits);
+    return 0;
+}
+```
+
+**Explanation:** This program categorizes each character in the input string as vowel, consonant, or digit, providing a complete character analysis.
+
+### Task 2.3:  Use strtok() to split a string into words (tokens). 
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[200];
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+    
+    char* token = strtok(str, " ,.-!?\t");
+    printf("Tokens found:\n");
+    
+    while (token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ,.-!?\t");
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program demonstrates the use of `strtok()` function to split a string into tokens based on multiple delimiters including spaces, punctuation, and tabs.
+
+### Task 2.4:  Count how many tokens were found using strtok(). 
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[200];
+    int tokenCount = 0;
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+    
+    char* token = strtok(str, " ,.-!?\t");
+    
+    while (token != NULL) {
+        tokenCount++;
+        token = strtok(NULL, " ,.-!?\t");
+    }
+    
+    printf("Total tokens found: %d\n", tokenCount);
+    return 0;
+}
+```
+
+**Explanation:** This program extends the tokenization concept to count the total number of tokens found in the input string.
+
+---
+
+## LAB TASK 03: Regular Expressions
+
+### Task 3.1:  a* → Accepts strings with zero or more 'a' (like "", "a", "aaa").
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int isValid = 1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != 'a') {
+            isValid = 0;
+            break;
+        }
+    }
+    
+    if (isValid) {
+        printf("Accepted (Matches a*)\n");
+    } else {
+        printf("Rejected (Does not match a*)\n");
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program implements the regular expression `a*` which accepts strings containing zero or more 'a' characters only.
+
+### Task 3.2:  a*b+ → Accepts strings with any number of 'a' followed by 
+one or more 'b' (like "b", "ab", "aaab").
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int i = 0, len, isValid = 1;
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    len = strlen(str);
+    
+    // Skip all 'a' characters
+    while (str[i] == 'a') {
+        i++;
+    }
+    
+    // Count 'b' characters
+    int bCount = 0;
+    while (str[i] == 'b') {
+        bCount++;
+        i++;
+    }
+    
+    // Check if we've consumed all characters and have at least one 'b'
+    if (i != len || bCount == 0) {
+        isValid = 0;
+    }
+    
+    if (isValid) {
+        printf("Accepted (Matches a*b+)\n");
+    } else {
+        printf("Rejected (Does not match a*b+)\n");
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program implements the regular expression `a*b+` which accepts strings with any number of 'a's followed by at least one 'b'.
+
+### Task 3.3: abb → Only accepts the exact string "abb".
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string: ");
+    scanf("%s", str);
+    
+    if (strcmp(str, "abb") == 0) {
+        printf("Accepted (Exact match for 'abb')\n");
+    } else {
+        printf("Rejected (Does not match 'abb')\n");
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program checks for an exact string match with "abb", demonstrating precise pattern matching.
+
+---
+
+## LAB TASK 04: Lexical Analysis
+
+### Task 4.1:  Remove single-line (//) or multi-line (/* */) comments from 
+input code.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char code[5000] = "";
+    char line[500];
+    
+    printf("Enter your code (type '#' in a new line to finish):\n");
+    while (1) {
+        fgets(line, sizeof(line), stdin);
+        if (line[0] == '#' && line[1] == '\n')
+            break;
+        strcat(code, line);
+    }
+    
+    for (int i = 0; code[i] != '\0'; i++) {
+        if (code[i] == '/' && code[i + 1] == '/') {
+            // Skip single-line comment
+            while (code[i] != '\n' && code[i] != '\0')
+                i++;
+        } else if (code[i] == '/' && code[i + 1] == '*') {
+            // Skip multi-line comment
+            i += 2;
+            while (!(code[i] == '*' && code[i + 1] == '/') && code[i] != '\0')
+                i++;
+            i += 1;
+        } else {
+            putchar(code[i]);
+        }
+    }
+    
+    return 0;
+}
+```
+
+**Explanation:** This program removes both single-line (//) and multi-line (/* */) comments from C code, demonstrating basic lexical analysis.
+
+### Task 4.2:  Count the articles ("a", "an", "the") in a sentence.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[1000], word[10];
+    int a = 0, an = 0, the = 0;
+    int i = 0, j = 0;
+    
+    printf("Enter a sentence: ");
+    fgets(str, sizeof(str), stdin);
+    
+    while (str[i]) {
+        if (isalpha(str[i])) {
+            word[j++] = tolower(str[i]);
+        } else {
+            if (j > 0) {
+                word[j] = '\0';
+                if (strcmp(word, "a") == 0) a++;
+                else if (strcmp(word, "an") == 0) an++;
+                else if (strcmp(word, "the") == 0) the++;
+                j = 0;
+            }
+        }
+        i++;
+    }
+    
+    // Check last word
+    if (j > 0) {
+        word[j] = '\0';
+        if (strcmp(word, "a") == 0) a++;
+        else if (strcmp(word, "an") == 0) an++;
+        else if (strcmp(word, "the") == 0) the++;
+    }
+    
+    printf("a: %d\nan: %d\nthe: %d\n", a, an, the);
+    return 0;
+}
+```
+
+**Explanation:** This program counts occurrences of articles ("a", "an", "the") in a sentence, useful for natural language processing applications.
+
+### Task 4.3:  Check if a word is a valid identifier in C (like variable 
+name).
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main() {
+    char str[100];
+    int i, valid = 1;
+    
+    printf("Enter an identifier: ");
+    scanf("%s", str);
+    
+    // First character must be letter or underscore
+    if (!(isalpha(str[0]) || str[0] == '_')) {
+        valid = 0;
+    }
+    
+    // Remaining characters must be alphanumeric or underscore
+    for (i = 1; str[i]; i++) {
+        if (!(isalnum(str[i]) || str[i] == '_')) {
+            valid = 0;
+            break;
+        }
+    }
+    
+    if (valid)
+        printf("Valid identifier\n");
+    else
+        printf("Invalid identifier\n");
+        
+    return 0;
+}
+```
+
+**Explanation:** This program validates C identifiers according to language rules: must start with letter or underscore, followed by alphanumeric characters or underscores.
+
+---
+
+## LAB TASK 05: ASCII & Names
+
+### Task 5.1: Input 3 characters and show the next 3 ASCII characters.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char c1, c2, c3;
+    
+    printf("Enter 3 characters: ");
+    scanf(" %c %c %c", &c1, &c2, &c3);
+    
+    printf("Next ASCII characters: %c %c %c\n", c1 + 1, c2 + 1, c3 + 1);
+    return 0;
+}
+```
+
+### Task 5.2:  Read full name and print the initials (like J.D. for John Doe).
+
+```c
+#include <stdio.h>
+
+int main() {
+    char first[50], last[50];
+    
+    printf("Enter first and last name: ");
+    scanf("%s %s", first, last);
+    
+    printf("Initials: %c.%c.\n", first[0], last[0]);
+    return 0;
+}
+```
+
+### Task 5.3:  Show the ASCII value of a character and the one 5 steps 
+ahead.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char ch;
+    
+    printf("Enter a character: ");
+    scanf(" %c", &ch);
+    
+    printf("ASCII of %c: %d\n", ch, ch);
+    printf("ASCII 5 steps ahead: %d (%c)\n", ch + 5, ch + 5);
+    return 0;
+}
+```
+
+### Task 5.4: Input full name (up to 3 words) and show all initials. 
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char name[100];
+    int i;
+    
+    printf("Enter full name (up to 3 words): ");
+    fgets(name, sizeof(name), stdin);
+    
+    for (i = 0; name[i] != '\0'; i++) {
+        if (i == 0 && name[i] != ' ') {
+            printf("%c.", name[i]);
+        } else if (name[i] == ' ' && name[i + 1] != ' ' && 
+                   name[i + 1] != '\0' && name[i + 1] != '\n') {
+            printf("%c.", name[i + 1]);
+        }
+    }
+    printf("\n");
+    return 0;
+}
+```
+
+**Explanation:** These tasks demonstrate ASCII manipulation and string processing for name handling, common in text processing applications.
+
+---
+
+## LAB TASK 06: Make a basic calculator that follows math rules (like * 
+before +) using a method called recursive descent parser.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+
+char input[100];
+int pos = 0;
+
+int getNextToken() {
+    while (input[pos] == ' ')
+        pos++;
+    return input[pos++];
+}
+
+void putBackToken() {
+    pos--;
+}
+
+int parseExpr();
+int parseTerm();
+int parsePower();
+
+int parseFactor() {
+    int token = getNextToken();
+    
+    if (isdigit(token)) {
+        int value = token - '0';
+        while (isdigit(input[pos])) {
+            value = value * 10 + (input[pos++] - '0');
+        }
+        return value;
+    } else if (token == '(') {
+        int result = parseExpr();
+        if (getNextToken() != ')') {
+            printf("Error: Missing ')'\n");
+            exit(1);
+        }
+        return result;
+    } else {
+        printf("Error: Expected number or '('\n");
+        exit(1);
+    }
+}
+
+int parsePower() {
+    int base = parseFactor();
+    int token = getNextToken();
+    
+    if (token == '^') {
+        int exponent = parsePower();
+        return pow(base, exponent);
+    } else {
+        putBackToken();
+        return base;
+    }
+}
+
+int parseTerm() {
+    int result = parsePower();
+    int token = getNextToken();
+    
+    while (token == '*' || token == '/') {
+        if (token == '*') {
+            result *= parsePower();
+        } else {
+            int divisor = parsePower();
+            if (divisor == 0) {
+                printf("Error: Division by zero\n");
+                exit(1);
+            }
+            result /= divisor;
+        }
+        token = getNextToken();
+    }
+    
+    putBackToken();
+    return result;
+}
+
+int parseExpr() {
+    int result = parseTerm();
+    int token = getNextToken();
+    
+    while (token == '+' || token == '-') {
+        if (token == '+') {
+            result += parseTerm();
+        } else {
+            result -= parseTerm();
+        }
+        token = getNextToken();
+    }
+    
+    putBackToken();
+    return result;
+}
+
+int main() {
+    printf("Enter an arithmetic expression: ");
+    fgets(input, sizeof(input), stdin);
+    
+    size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n') {
+        input[len - 1] = '\0';
+    }
+    
+    int result = parseExpr();
+    printf("Result: %d\n", result);
+    return 0;
+}
+```
+
+**Explanation:** This recursive descent parser evaluates arithmetic expressions while respecting operator precedence (parentheses, exponents, multiplication/division, addition/subtraction).
+
+---
+
+## LAB TASK 07: Convert expressions into TAC format, which is used in 
+compiler design (e.g., t1 = a + b).
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define MAX 100
+int tempVarCount = 1;
+
+int isValidIdentifier(char *s) {
+    if (!isalpha(s[0]))
+        return 0;
+    for (int i = 1; s[i]; i++) {
+        if (!isalnum(s[i]))
+            return 0;
+    }
+    return 1;
+}
+
+void getTemp(char *temp) {
+    sprintf(temp, "t%d", tempVarCount++);
+}
+
+int main() {
+    char input[MAX], lhs[20];
+    char tokens[50][20];
+    int tokenCount = 0;
+    
+    printf("Enter expression (e.g., a = b + c + d + e):\n> ");
+    fgets(input, MAX, stdin);
+    input[strcspn(input, "\n")] = '\0';
+    
+    char *token = strtok(input, " ");
+    while (token != NULL) {
+        strcpy(tokens[tokenCount++], token);
+        token = strtok(NULL, " ");
+    }
+    
+    if (tokenCount < 5 || strcmp(tokens[1], "=") != 0) {
+        printf("Error: Invalid format. Use format like: a = b + c + d\n");
+        return 1;
+    }
+    
+    strcpy(lhs, tokens[0]);
+    if (!isValidIdentifier(lhs)) {
+        printf("Error: Invalid identifier on LHS.\n");
+        return 1;
+    }
+    
+    printf("\nThree Address Code:\n");
+    
+    char prevTemp[20], temp[20];
+    char op1[20], op2[20], oper;
+    
+    strcpy(op1, tokens[2]);
+    strcpy(op2, tokens[4]);
+    oper = tokens[3][0];
+    
+    getTemp(temp);
+    printf("%s = %s %c %s\n", temp, op1, oper, op2);
+    strcpy(prevTemp, temp);
+    
+    for (int i = 5; i < tokenCount; i += 2) {
+        if (i + 1 >= tokenCount) {
+            printf("Error: Operator without operand.\n");
+            return 1;
+        }
+        
+        oper = tokens[i][0];
+        strcpy(op2, tokens[i + 1]);
+        
+        getTemp(temp);
+        printf("%s = %s %c %s\n", temp, prevTemp, oper, op2);
+        strcpy(prevTemp, temp);
+    }
+    
+    printf("%s = %s\n", lhs, prevTemp);
+    return 0;
+}
+```
+
+**Explanation:** This program converts complex arithmetic expressions into Three Address Code format, which is an intermediate representation used in compiler design for optimization and code generation.
+
+---
+
+## LAB TASK 08: Create a parser in C to analyze and evaluate math 
+expressions using grammar rules.
+
+```c
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+char input[100];
+int pos = 0;
+char currentChar;
+
+void error() {
+    printf("Invalid Expression\n");
+    exit(1);
+}
+
+void advance() {
+    currentChar = input[pos++];
+}
+
+void match(char expected) {
+    if (currentChar == expected)
+        advance();
+    else
+        error();
+}
+
+void E();
+void Eprime();
+void T();
+void Tprime();
+void F();
+
+void E() {
+    T();
+    Eprime();
+}
+
+void Eprime() {
+    if (currentChar == '+' || currentChar == '-') {
+        char op = currentChar;
+        advance();
+        T();
+        Eprime();
+    }
+}
+
+void T() {
+    F();
+    Tprime();
+}
+
+void Tprime() {
+    if (currentChar == '*' || currentChar == '/') {
+        char op = currentChar;
+        advance();
+        F();
+        Tprime();
+    }
+}
+
+void F() {
+    if (isalpha(currentChar)) {
+        advance();
+    } else if (currentChar == '(') {
+        advance();
+        E();
+        if (currentChar == ')') {
+            advance();
+        } else {
+            error();
+        }
+    } else {
+        error();
+    }
+}
+
+int main() {
+    printf("Enter an expression: ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0';
+    
+    pos = 0;
+    advance();
+    E();
+    
+    if (currentChar == '\0')
+        printf("Expression is Valid\n");
+    else
+        printf("Invalid Expression\n");
+        
+    return 0;
+}
+```
+
+**Explanation:** This recursive descent parser validates arithmetic expressions based on formal grammar rules, demonstrating syntax analysis in compiler design.
+
+---
+
+## LAB TASK 09:  Convert normal math expressions (like a + b) into postfix 
+form (ab+) using a stack.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char c) {
+    stack[++top] = c;
+}
+
+char pop() {
+    if (top == -1)
+        return -1;
+    return stack[top--];
+}
+
+char peek() {
+    if (top == -1)
+        return -1;
+    return stack[top];
+}
+
+int precedence(char op) {
+    if (op == '+' || op == '-')
+        return 1;
+    if (op == '*' || op == '/')
+        return 2;
+    return 0;
+}
+
+void infixToPostfix(char *exp) {
+    char *e = exp;
+    char ch;
+    
+    printf("Postfix: ");
+    
+    while (*e != '\0') {
+        if (isalnum(*e)) {
+            printf("%c ", *e);
+        } else if (*e == '(') {
+            push(*e);
+        } else if (*e == ')') {
+            while ((ch = pop()) != '(')
+                printf("%c ", ch);
+        } else {
+            while (precedence(peek()) >= precedence(*e))
+                printf("%c ", pop());
+            push(*e);
+        }
+        e++;
+    }
+    
+    while (top != -1)
+        printf("%c ", pop());
+    
+    printf("\n");
+}
+
+int main() {
+    char expression[MAX];
+    
+    printf("Enter infix expression (e.g., a+b*c): ");
+    scanf("%s", expression);
+    
+    infixToPostfix(expression);
+    return 0;
+}
+```
+
+**Explanation:** This program converts infix expressions to postfix notation using the shunting yard algorithm, which is fundamental for expression evaluation in compilers and calculators.
+
+---
+
+## LAB TASK 10: Deterministic Finite Automata (DFA)
+
+### Task 10.1: DFA for Strings Starting with "10"
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int dfa_startsWith10(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '1')
+                    state = 1;
+                else
+                    state = 3; // reject state
+                break;
+            case 1:
+                if (ch == '0')
+                    state = 2; // accept state
+                else
+                    state = 3; // reject state
+                break;
+            case 2:
+                if (ch == '0' || ch == '1')
+                    state = 2; // stay in accept state
+                else
+                    state = 3; // reject state
+                break;
+            case 3:
+                return 0; // reject
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_startsWith10(input))
+        printf("Accepted: String starts with '10'\n");
+    else
+        printf("Rejected: Does NOT start with '10'\n");
+        
+    return 0;
+}
+```
+
+### Task 10.2: DFA for Strings Ending with "01"
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int dfa_endsWith01(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+            case 1:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 2;
+                else return 0;
+                break;
+            case 2:
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_endsWith01(input))
+        printf("Accepted: String ends with '01'\n");
+    else
+        printf("Rejected: Does NOT end with '01'\n");
+        
+    return 0;
+}
+```
+
+### Task 10.3: DFA for Exactly One '0'
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int dfa_exactlyOneZero(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0: // no zeros seen
+                if (ch == '0') state = 1;
+                else if (ch == '1') state = 0;
+                else return 0;
+                break;
+            case 1: // exactly one zero seen
+                if (ch == '0') state = 2; // too many zeros
+                else if (ch == '1') state = 1;
+                else return 0;
+                break;
+            case 2: // more than one zero seen
+                return 0;
+        }
+    }
+    
+    return state == 1;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_exactlyOneZero(input))
+        printf("Accepted: String contains exactly one '0'\n");
+    else
+        printf("Rejected: Does NOT contain exactly one '0'\n");
+        
+    return 0;
+}
+```
+
+### Task 10.4: DFA for Strings Containing "01"
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int dfa_contains01(char *str) {
+    int state = 0;
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0:
+                if (ch == '0')
+                    state = 1;
+                else if (ch == '1')
+                    state = 0;
+                else
+                    return 0;
+                break;
+            case 1:
+                if (ch == '1')
+                    state = 2; // found "01"
+                else if (ch == '0')
+                    state = 1;
+                else
+                    return 0;
+                break;
+            case 2:
+                state = 2; // stay in accept state
+                break;
+        }
+    }
+    
+    return state == 2;
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_contains01(input))
+        printf("Accepted: String contains '01'\n");
+    else
+        printf("Rejected: String does NOT contain '01'\n");
+        
+    return 0;
+}
+```
+
+### Task 10.5: DFA for Even Number of '0's
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int dfa_evenZeros(char *str) {
+    int state = 0; // state 0: even number of zeros, state 1: odd number of zeros
+    
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        
+        switch (state) {
+            case 0: // even number of zeros
+                if (ch == '0')
+                    state = 1; // now odd
+                else if (ch == '1')
+                    state = 0; // stay even
+                else
+                    return 0;
+                break;
+            case 1: // odd number of zeros
+                if (ch == '0')
+                    state = 0; // now even
+                else if (ch == '1')
+                    state = 1; // stay odd
+                else
+                    return 0;
+                break;
+        }
+    }
+    
+    return state == 0; // accept if even number of zeros
+}
+
+int main() {
+    char input[100];
+    
+    printf("Enter a binary string: ");
+    scanf("%s", input);
+    
+    if (dfa_evenZeros(input))
+        printf("Accepted: Even number of '0's\n");
+    else
+        printf("Rejected: Odd number of '0's\n");
+        
+    return 0;
+}
+```
+
+**Explanation:** These DFA implementations demonstrate finite state machine design for pattern recognition. Each DFA has specific states representing different conditions, and transitions between states are determined by input characters. This is fundamental to lexical analysis in compilers.
+
+---
+
+## Key Concepts Learned
+
+### 1. String Manipulation
+- Manual string operations without built-in functions
+- Character-by-character processing
+- Memory management for string operations
+
+### 2. Pattern Matching
+- Regular expression implementation
+- Finite state machines for pattern recognition
+- Complex pattern validation
+
+### 3. Lexical Analysis
+- Token recognition and classification
+- Comment removal from source code
+- Identifier validation according to language rules
+
+### 4. Parsing Techniques
+- Recursive descent parsing
+- Operator precedence handling
+- Syntax validation using formal grammars
+
+### 5. Intermediate Code Generation
+- Three Address Code (TAC) generation
+- Expression transformation for compiler optimization
+- Temporary variable management
+
+### 6. Expression Processing
+- Infix to postfix conversion using stack
+- Expression evaluation with proper precedence
+- Parentheses handling in complex expressions
+
+### 7. Finite Automata Design
+- State machine implementation in C
+- Pattern recognition using DFA
+- Multiple acceptance criteria handling
+
+---
+
+## Conclusion
+
+This comprehensive lab portfolio demonstrates the practical implementation of fundamental concepts in formal languages and compiler design. Through these 10 tasks, I have gained hands-on experience in:
+
+**Core Programming Skills:**
+- Advanced string manipulation techniques in C
+- Memory management and efficient algorithm implementation
+- Error handling and input validation
+
+**Compiler Design Fundamentals:**
+- Lexical analysis through tokenization and pattern matching
+- Syntax analysis using recursive descent parsing
+- Intermediate code generation with Three Address Code
+- Expression evaluation with proper operator precedence
+
+**Theoretical Concepts in Practice:**
+- Regular expression implementation for pattern matching
+- Finite automata design and simulation
+- Grammar-based parsing and validation
+- Stack-based algorithms for expression processing
+
+**Problem-Solving Abilities:**
+- Breaking complex problems into manageable components
+- Implementing theoretical concepts in practical code
+- Debugging and testing compiler-related algorithms
+
+The progression from basic string operations to complex parsing and automata design has provided a solid foundation in compiler construction principles. These skills are essential for understanding how programming languages are processed, from source code to executable programs.
+
+The implementation of DFAs for various pattern recognition tasks demonstrates the practical application of finite state machines in real-world scenarios such as lexical analysis, input validation, and protocol design. The parsing exercises show how formal grammars translate into working code that can analyze and validate complex expressions.
+
+This portfolio represents not just a collection of programming exercises, but a comprehensive journey through the core concepts that underpin modern compiler design and formal language theory. The skills developed here are directly applicable to advanced topics in compiler construction, interpreter design, and language processing systems.
+
+**Future Applications:**
+These concepts serve as building blocks for more advanced compiler topics including:
+- Advanced parsing techniques (LR, LALR)
+- Semantic analysis and type checking
+- Code optimization techniques
+- Target code generation
+- Error recovery and reporting systems
+
+The practical experience gained through these implementations provides a strong foundation for tackling real-world compiler design challenges and understanding the inner workings of programming language processors.
