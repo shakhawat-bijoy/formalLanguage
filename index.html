@@ -16,6 +16,12 @@
             padding-right: 10px;
         }
 
+        a {
+            text-decoration: none;
+            display: inline-block;
+            color: #0a3d62;
+        }
+
         h1,
         h2,
         h3,
@@ -122,6 +128,7 @@
             font-family: 'Fira Mono', 'Consolas', monospace;
             overflow-x: auto;
             box-shadow: 0 1px 4px #e0eaf6;
+            cursor: copy;
         }
 
         .section {
@@ -170,6 +177,21 @@
             box-shadow: 0 1px 4px #e0eaf6;
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: transparent;
+            color: rgb(0, 0, 0);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            font-size: medium;
+        }
+
         @media print {
             body {
                 margin: 0;
@@ -200,61 +222,62 @@
     <div class="toc">
         <h2>Table of Contents</h2>
         <ul>
-            <li>1. Introduction</li>
-            <li>2. String Operations and Analysis</li>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#string-operations">2. String Operations and Analysis</a></li>
             <ul>
                 <li>2.1 String Length Calculation</li>
                 <li>2.2 White Space Operations</li>
                 <li>2.3 Character Analysis</li>
             </ul>
-            <li>3. Regular Expressions and Pattern Matching</li>
+            <li><a href="#regex">3. Regular Expressions and Pattern Matching</a></li>
             <ul>
                 <li>3.1 Pattern a* (Zero or More 'a')</li>
                 <li>3.2 Pattern a*b+ (Complex Pattern)</li>
                 <li>3.3 Exact String Matching</li>
                 <li>3.4 String Tokenization</li>
             </ul>
-            <li>4. Lexical Analysis</li>
+            <li><a href="#lexical-analysis">4. Lexical Analysis</a></li>
             <ul>
                 <li>4.1 Comment Removal</li>
                 <li>4.2 Article Counter</li>
                 <li>4.3 Valid Identifier Checker</li>
             </ul>
-            <li>5. ASCII Operations and Name Processing</li>
+            <li><a href="#ascii-operations">5. ASCII Operations and Name Processing</a></li>
             <ul>
                 <li>5.1 ASCII Character Manipulation</li>
                 <li>5.2 Initial Extraction</li>
             </ul>
-            <li>6. Expression Evaluation (Recursive Descent Parser)</li>
+            <li><a href="#expression-evaluation">6. Expression Evaluation (Recursive Descent Parser)</a></li>
             <ul>
                 <li>6.1 Parser Implementation</li>
                 <li>6.2 Expression Evaluation with Precedence</li>
             </ul>
-            <li>7. Three Address Code (TAC) Generation</li>
+            <li><a href="#tac-generation">7. Three Address Code (TAC) Generation</a></li>
             <ul>
                 <li>7.1 TAC Generation Algorithm</li>
                 <li>7.2 Intermediate Code Examples</li>
             </ul>
-            <li>8. Recursive Descent Parser</li>
+            <li><a href="#rd-parser">8. Recursive Descent Parser</a></li>
             <ul>
                 <li>8.1 Grammar-based Parsing</li>
                 <li>8.2 Syntax Validation</li>
             </ul>
-            <li>9. Infix to Postfix Conversion</li>
+            <li><a href="#infix-to-postfix">9. Infix to Postfix Conversion</a></li>
             <ul>
                 <li>9.1 Shunting Yard Algorithm</li>
                 <li>9.2 Stack-based Conversion</li>
             </ul>
-            <li>10. Deterministic Finite Automata (DFA)</li>
+            <li><a href="#dfa">10. Deterministic Finite Automata (DFA)</a></li>
             <ul>
-                <li>10.1 DFA for Strings Starting with "10"</li>
-                <li>10.2 DFA for Strings Ending with "01"</li>
-                <li>10.3 DFA for Exactly One '0'</li>
-                <li>10.4 DFA for Strings Containing "01"</li>
-                <li>10.5 DFA for Even Number of '0's</li>
+                <li>10.1 Accepts strings starting with "01"</li>
+                <li>10.2 DFA for Strings Starting with "10"</li>
+                <li>10.3 DFA for Strings Ending with "01"</li>
+                <li>10.4 DFA for Exactly One '0'</li>
+                <li>10.5 DFA for Strings Containing "01"</li>
+                <li>10.6 DFA for Even Number of '0's</li>
             </ul>
-            <li>11. Key Concepts and Learning Outcomes</li>
-            <li>12. Conclusion</li>
+            <li><a href="#key-concepts">11. Key Concepts and Learning Outcomes</a></li>
+            <li><a href="#conclusion">12. Conclusion</a></li>
         </ul>
     </div>
 
@@ -277,12 +300,16 @@
             providing hands-on experience with the theoretical concepts taught in formal language theory.</p>
     </div>
 
+
+    
+
     <!-- Section 2: String Operations and Analysis -->
     <div class="section" id="string-operations">
         <h2>2. String Operations and Analysis <span class="page-num">4</span></h2>
         <div class="subsection" id="length">
             <h3>2.1 String Length Calculation <span class="page-num">4</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -314,7 +341,8 @@ int main() {
         <div class="subsection" id="whitespace">
             <h3>2.2 White Space Operations <span class="page-num">5</span></h3>
             <h4>Count White Spaces</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -342,7 +370,8 @@ int main() {
             <div class="output">Sample Output:<br>Enter a string: This is a test string<br>Number of white spaces: 4
             </div>
             <h4>Remove White Spaces</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -375,7 +404,8 @@ int main() {
         <div class="subsection" id="character-analysis">
             <h3>2.3 Character Analysis <span class="page-num">6</span></h3>
             <h4>C Keyword Checker</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 const char* keywords[] = {
@@ -414,7 +444,8 @@ int main() {
             <div class="output">Enter a string: int<br>"int" is a C keyword.<br>Enter a string: variable<br>"variable"
                 is NOT a C keyword.</div>
             <h4>Count Vowels, Consonants, and Digits</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;ctype.h&gt;
 
 int main() {
@@ -448,7 +479,8 @@ int main() {
         <h2>3. Regular Expressions and Pattern Matching <span class="page-num">8</span></h2>
         <div class="subsection">
             <h3>3.1 Pattern a* (Zero or More 'a') <span class="page-num">8</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -479,7 +511,8 @@ int main() {
         </div>
         <div class="subsection">
             <h3>3.2 Pattern a*b+ (Complex Pattern) <span class="page-num">9</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -521,7 +554,8 @@ int main() {
         </div>
         <div class="subsection">
             <h3>3.3 Exact String Matching <span class="page-num">10</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -546,7 +580,8 @@ int main() {
         <div class="subsection" id="string-tokenization">
             <h3>3.4 String Tokenization <span class="page-num">7</span></h3>
             <h4>String Tokenization with strtok()</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -566,7 +601,8 @@ int main() {
             <div class="output">Enter a string: Hello, world! How are you?<br>Tokens
                 found:<br>Hello<br>world<br>How<br>are<br>you</div>
             <h4>Count Tokens</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -594,7 +630,8 @@ int main() {
         <h2>4. Lexical Analysis <span class="page-num">11</span></h2>
         <div class="subsection">
             <h3>4.1 Comment Removal <span class="page-num">11</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -634,7 +671,8 @@ int main() {
         </div>
         <div class="subsection">
             <h3>4.2 Article Counter <span class="page-num">12</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 #include &lt;ctype.h&gt;
 
@@ -678,7 +716,8 @@ int main() {
         </div>
         <div class="subsection">
             <h3>4.3 Valid Identifier Checker <span class="page-num">13</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;ctype.h&gt;
 #include &lt;string.h&gt;
 
@@ -721,7 +760,8 @@ int main() {
         <div class="subsection">
             <h3>5.1 ASCII Character Manipulation <span class="page-num">14</span></h3>
             <h4>Next ASCII Characters</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 
 int main() {
     char c1, c2, c3;
@@ -735,7 +775,8 @@ int main() {
             </code></pre>
             <div class="output">Enter 3 characters: a b c<br>Next ASCII characters: b c d</div>
             <h4>ASCII Value and Offset</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 
 int main() {
     char ch;
@@ -753,7 +794,8 @@ int main() {
         <div class="subsection">
             <h3>5.2 Initial Extraction <span class="page-num">15</span></h3>
             <h4>Extract Initials</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 
 int main() {
     char first[50], last[50];
@@ -767,7 +809,8 @@ int main() {
             </code></pre>
             <div class="output">Enter first and last name: John Doe<br>Initials: J.D.</div>
             <h4>Full Name Initials</h4>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int main() {
@@ -798,7 +841,8 @@ int main() {
         <h2>6. Expression Evaluation (Recursive Descent Parser) <span class="page-num">16</span></h2>
         <div class="subsection">
             <h3>6.1 Parser Implementation <span class="page-num">16</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
 #include &lt;math.h&gt;
@@ -919,7 +963,8 @@ int main() {
         <h2>7. Three Address Code (TAC) Generation <span class="page-num">18</span></h2>
         <div class="subsection">
             <h3>7.1 TAC Generation Algorithm <span class="page-num">18</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
@@ -1003,7 +1048,9 @@ int main() {
         </div>
         <div class="subsection">
             <h3>7.2 Intermediate Code Examples <span class="page-num">19</span></h3>
-            <pre><code>Input: x = a + b + c
+            <pre>
+                <code>
+Input: x = a + b + c
 Output:
 t1 = a + b
 t2 = t1 + c
@@ -1024,7 +1071,8 @@ result = t3
         <h2>8. Recursive Descent Parser <span class="page-num">20</span></h2>
         <div class="subsection">
             <h3>8.1 Grammar-based Parsing <span class="page-num">20</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;ctype.h&gt;
 #include &lt;string.h&gt;
 #include &lt;stdlib.h&gt;
@@ -1121,7 +1169,8 @@ int main() {
         </div>
         <div class="subsection">
             <h3>8.2 Syntax Validation <span class="page-num">21</span></h3>
-            <pre><code>E  → T E'
+            <pre><code>
+E  → T E'
 E' → + T E' | - T E' | ε
 T  → F T'
 T' → * F T' | / F T' | ε
@@ -1136,7 +1185,8 @@ F  → id | ( E )
         <h2>9. Infix to Postfix Conversion <span class="page-num">22</span></h2>
         <div class="subsection">
             <h3>9.1 Shunting Yard Algorithm <span class="page-num">22</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;ctype.h&gt;
 
@@ -1234,9 +1284,64 @@ int main() {
     <!-- Section 10: DFA -->
     <div class="section" id="dfa">
         <h2>10. Deterministic Finite Automata (DFA) <span class="page-num">24</span></h2>
+
         <div class="subsection">
-            <h3>10.1 DFA for Strings Starting with "10" <span class="page-num">24</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <h3>10.1 Accepts strings starting with "01"</h3>
+            <pre>
+                <code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char input[100];
+    printf("Enter a string: ");
+    fgets(input, sizeof(input), stdin);
+
+    // Check if the string starts with "01"
+    if (strncmp(input, "01", 2) == 0) {
+        printf("Input starts with '01'\n");
+    } else {
+        printf("Input does not start with '01'\n");
+    }
+
+    return 0;
+}
+
+                </code>
+            </pre>
+            <div class="output">
+                Enter a binary string: 011011<br>
+                Accepted: String starts with '01'<br>
+                Enter a binary string: 101010<br>
+                Rejected: Does NOT start with '01'<br>
+                Enter a binary string: 01<br>
+                Accepted: String starts with '01'<br>
+            </div>
+
+            <div class="explanation">
+                <b>State Diagram:</b>
+                <pre>
+State 0 (Start):
+  - Input '0' → State 1
+  - Input '1' → State 3 (Reject)
+State 1:
+  - Input '1' → State 2 (Accept)
+  - Input '0' → State 3 (Reject)
+State 2 (Accept):
+  - Input '0' or '1' → State 2 (Stay)
+State 3 (Reject):
+  - Any input → Reject
+    </pre>
+            </div>
+
+        </div>
+
+
+
+        <div class="subsection">
+            <h3>10.2 DFA for Strings Starting with "10" <span class="page-num">24</span></h3>
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int dfa_startsWith10(char *str) {
@@ -1306,8 +1411,9 @@ State 3 (Reject):
             </div>
         </div>
         <div class="subsection">
-            <h3>10.2 DFA for Strings Ending with "01" <span class="page-num">26</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <h3>10.3 DFA for Strings Ending with "01" <span class="page-num">26</span></h3>
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int dfa_endsWith01(char *str) {
@@ -1371,8 +1477,9 @@ State 2 (Accept):
             </div>
         </div>
         <div class="subsection">
-            <h3>10.3 DFA for Exactly One '0' <span class="page-num">28</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <h3>10.4 DFA for Exactly One '0' <span class="page-num">28</span></h3>
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int dfa_exactlyOneZero(char *str) {
@@ -1432,8 +1539,9 @@ State 2 (Reject - More than one zero):
             </div>
         </div>
         <div class="subsection">
-            <h3>10.4 DFA for Strings Containing "01" <span class="page-num">30</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <h3>10.5 DFA for Strings Containing "01" <span class="page-num">30</span></h3>
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int dfa_contains01(char *str) {
@@ -1487,8 +1595,9 @@ int main() {
                 contains '01'</div>
         </div>
         <div class="subsection">
-            <h3>10.5 DFA for Even Number of '0's <span class="page-num">32</span></h3>
-            <pre><code>#include &lt;stdio.h&gt;
+            <h3>10.6 DFA for Even Number of '0's <span class="page-num">32</span></h3>
+            <pre><code>
+#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
 
 int dfa_evenZeros(char *str) {
@@ -1685,6 +1794,8 @@ State 1 (Reject - Odd zeros):
     <div class="footer">
         &copy; 2025 Shakhawat Hossain Bijoy | Formal Languages and Compiler Lab Portfolio
     </div>
+
+    <a href="#top" class="back-to-top">↑</a>
 
 </body>
 
